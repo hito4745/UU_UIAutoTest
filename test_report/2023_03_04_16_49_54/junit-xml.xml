@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="1" failures="2" skipped="0" tests="10" time="123.856" timestamp="2023-03-04T16:49:54.779793" hostname="111deMacBook-Pro.local"><testcase classname="test_case.test_baidu.TestBaidu" name="test_baidu_001" time="6.961" /><testcase classname="test_case.test_baidu.TestBaidu" name="test_baidu_002" time="2.567" /><testcase classname="test_case.test_baidu.TestBaidu" name="test_baidu_003" time="0.444" /><testcase classname="test_case.test_baidu.TestBaidu" name="test_baidu_004[case1]" time="2.409" /><testcase classname="test_case.test_baidu.TestBaidu" name="test_baidu_004[case2]" time="2.402" /><testcase classname="test_case.test_baidu.TestBaidu" name="test_baidu_004[case3]" time="2.493"><failure message="AssertionError: assert '百度一下，你就知道' == 'pytest-html_百度搜索'&#10;  - pytest-html_百度搜索&#10;  + 百度一下，你就知道">self = &lt;test_case.test_baidu.TestBaidu object at 0x113b201f0&gt;, name = '3'
+search_key = 'pytest-html'
+page = &lt;Page url='https://www.baidu.com/s?ie=utf-8&amp;f=8&amp;rsv_bp=1&amp;rsv_idx=1&amp;tn=baidu&amp;wd=pytest-html&amp;fenlei=256&amp;rsv_pq=0xc9701ea...CswsRcWdrBkpogQwEm3GX3z69zfAzNwSa2rnv&amp;rqlang=en&amp;rsv_dl=tb&amp;rsv_enter=0&amp;rsv_sug3=11&amp;rsv_btype=i&amp;inputT=114&amp;rsv_sug4=114'&gt;
+
+    @pytest.mark.parametrize(
+        "name, search_key",
+        [("1", "Selenium"),
+         ("2", "pytest文档"),
+         ("3", "pytest-html"),
+         ],
+        ids=["case1", "case2", "case3"]
+    )
+    @allure.story("test004-参数化")
+    def test_baidu_004(self, name, search_key, page):
+        page.goto("https://www.baidu.com")
+        page.type(BaiduElem.search_input, search_key)
+        page.click(BaiduElem.search_button)
+        sleep(2)
+&gt;       assert page.title() == search_key + "_百度搜索"
+E       AssertionError: assert '百度一下，你就知道' == 'pytest-html_百度搜索'
+E         - pytest-html_百度搜索
+E         + 百度一下，你就知道
+
+test_case/test_baidu.py:86: AssertionError</failure></testcase><testcase classname="test_case.test_baidu.TestBaidu" name="test_baidu_006[1-Selenium]" time="2.495" /><testcase classname="test_case.test_baidu.TestBaidu" name="test_baidu_006[2-playwright]" time="4.012" /><testcase classname="test_case.test_inventory.TestInventory" name="test_grounding_onleysale" time="71.282"><failure message="playwright._impl._api_types.TimeoutError: Timeout 30000ms exceeded.&#10;=========================== logs ===========================&#10;waiting for locator(&quot;text=上架成功&quot;)&#10;============================================================">self = &lt;test_case.test_inventory.TestInventory object at 0x113b2bc70&gt;
+page = &lt;Page url='https://testwww.youpin898.com/stock?gameId=730&amp;tabKey=1'&gt;
+
+    @allure.story("只卖不租-单个上架")
+    def test_grounding_onleysale(self, page):
+        # 点击我的库存
+        page.locator(InventoryPage.my_inventory).click()
+        # 库存加载较慢，设置一个等待时间
+        page.wait_for_timeout(10000)
+        page.locator(InventoryPage.show_all).click()
+        # 点击可出售筛选项
+        page.locator(InventoryPage.show_can_sale).click()
+        page.wait_for_timeout(5000)
+        # 选择商品
+        page.locator(InventoryPage.select_goods).click()
+        page.wait_for_timeout(5000)
+        # 点击上架
+        page.locator(InventoryPage.grounding_but).click()
+        page.wait_for_timeout(5000)
+        # 点击只卖不租
+        page.locator(InventoryPage.only_sale).click()
+        # 输入价格
+        page.locator(InventoryPage.pricing_sale).fill("1")
+        # 输入商品描述
+        page.locator(InventoryPage.add_comment).fill("UI自动化上架demo正确上架数字1")
+        page.wait_for_timeout(1000)
+        # 点击确认上架
+        page.locator(InventoryPage.confirm_grounding_but).click()
+        page.wait_for_timeout(5000)
+        # 点击确认，因确认框隐藏无法捕获，此处使用JS点击
+        # page.evaluate(InventoryPage.confirm)
+        # 对话框处理 监听对话框
+        # page.on("dialog", lambda dialog: dialog.accept())
+    
+        page.click(InventoryPage.confirm)
+    
+        page.wait_for_timeout(5000)
+        # 获取弹窗文字
+&gt;       msg = page.locator(InventoryPage.msg).text_content()
+
+test_case/test_inventory.py:62: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+venv/lib/python3.10/site-packages/playwright/sync_api/_generated.py:17504: in text_content
+    self._sync(self._impl_obj.text_content(timeout=timeout))
+venv/lib/python3.10/site-packages/playwright/_impl/_locator.py:552: in text_content
+    return await self._frame.text_content(
+venv/lib/python3.10/site-packages/playwright/_impl/_frame.py:605: in text_content
+    return await self._channel.send("textContent", locals_to_params(locals()))
+venv/lib/python3.10/site-packages/playwright/_impl/_connection.py:44: in send
+    return await self._connection.wrap_api_call(
+venv/lib/python3.10/site-packages/playwright/_impl/_connection.py:419: in wrap_api_call
+    return await cb()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;playwright._impl._connection.Channel object at 0x113b2a5f0&gt;
+method = 'textContent', params = {'selector': 'text=上架成功', 'strict': True}
+return_as_dict = False
+
+    async def inner_send(
+        self, method: str, params: Optional[Dict], return_as_dict: bool
+    ) -&gt; Any:
+        if params is None:
+            params = {}
+        callback = self._connection._send_message_to_server(self._guid, method, params)
+        if self._connection._error:
+            error = self._connection._error
+            self._connection._error = None
+            raise error
+        done, _ = await asyncio.wait(
+            {
+                self._connection._transport.on_error_future,
+                callback.future,
+            },
+            return_when=asyncio.FIRST_COMPLETED,
+        )
+        if not callback.future.done():
+            callback.future.cancel()
+&gt;       result = next(iter(done)).result()
+E       playwright._impl._api_types.TimeoutError: Timeout 30000ms exceeded.
+E       =========================== logs ===========================
+E       waiting for locator("text=上架成功")
+E       ============================================================
+
+venv/lib/python3.10/site-packages/playwright/_impl/_connection.py:79: TimeoutError</failure></testcase><testcase classname="pytest" name="internal" time="0.000"><error message="internal error">Traceback (most recent call last):
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/_pytest/main.py", line 270, in wrap_session
+    session.exitstatus = doit(config, session) or 0
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/_pytest/main.py", line 324, in _main
+    config.hook.pytest_runtestloop(session=session)
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/pluggy/_hooks.py", line 265, in __call__
+    return self._hookexec(self.name, self.get_hookimpls(), kwargs, firstresult)
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/pluggy/_manager.py", line 80, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/pluggy/_callers.py", line 60, in _multicall
+    return outcome.get_result()
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/pluggy/_result.py", line 60, in get_result
+    raise ex[1].with_traceback(ex[2])
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/pluggy/_callers.py", line 39, in _multicall
+    res = hook_impl.function(*args)
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/_pytest/main.py", line 349, in pytest_runtestloop
+    item.config.hook.pytest_runtest_protocol(item=item, nextitem=nextitem)
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/pluggy/_hooks.py", line 265, in __call__
+    return self._hookexec(self.name, self.get_hookimpls(), kwargs, firstresult)
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/pluggy/_manager.py", line 80, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/pluggy/_callers.py", line 60, in _multicall
+    return outcome.get_result()
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/pluggy/_result.py", line 60, in get_result
+    raise ex[1].with_traceback(ex[2])
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/pluggy/_callers.py", line 39, in _multicall
+    res = hook_impl.function(*args)
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/pytest_rerunfailures.py", line 578, in pytest_runtest_protocol
+    reports = runtestprotocol(item, nextitem=nextitem, log=False)
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/_pytest/runner.py", line 131, in runtestprotocol
+    reports.append(call_and_report(item, "call", log))
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/_pytest/runner.py", line 222, in call_and_report
+    report: TestReport = hook.pytest_runtest_makereport(item=item, call=call)
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/pluggy/_hooks.py", line 265, in __call__
+    return self._hookexec(self.name, self.get_hookimpls(), kwargs, firstresult)
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/pluggy/_manager.py", line 80, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/pluggy/_callers.py", line 55, in _multicall
+    gen.send(outcome)
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/allure_pytest/listener.py", line 173, in pytest_runtest_makereport
+    report = (yield).get_result()
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/pluggy/_result.py", line 60, in get_result
+    raise ex[1].with_traceback(ex[2])
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/pluggy/_callers.py", line 34, in _multicall
+    next(gen)  # first yield
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/conftest.py", line 37, in pytest_runtest_makereport
+    page.screenshot(type='png'),
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/playwright/sync_api/_generated.py", line 9931, in screenshot
+    self._sync(
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/playwright/_impl/_sync_base.py", line 104, in _sync
+    return task.result()
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/playwright/_impl/_page.py", line 667, in screenshot
+    encoded_binary = await self._channel.send("screenshot", params)
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/playwright/_impl/_connection.py", line 44, in send
+    return await self._connection.wrap_api_call(
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/playwright/_impl/_connection.py", line 419, in wrap_api_call
+    return await cb()
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/playwright/_impl/_connection.py", line 79, in inner_send
+    result = next(iter(done)).result()
+playwright._impl._api_types.Error: Target page, context or browser has been closed</error></testcase></testsuite></testsuites>

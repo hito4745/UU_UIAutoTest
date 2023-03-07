@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="2" failures="0" skipped="0" tests="11" time="52.605" timestamp="2023-03-03T17:46:56.451438" hostname="111deMacBook-Pro.local"><testcase classname="test_case.test_baidu.TestBaidu" name="test_baidu_001" time="7.792" /><testcase classname="test_case.test_baidu.TestBaidu" name="test_baidu_002" time="2.978" /><testcase classname="test_case.test_baidu.TestBaidu" name="test_baidu_003" time="0.690" /><testcase classname="test_case.test_baidu.TestBaidu" name="test_baidu_004[case1]" time="2.625" /><testcase classname="test_case.test_baidu.TestBaidu" name="test_baidu_004[case2]" time="2.566" /><testcase classname="test_case.test_baidu.TestBaidu" name="test_baidu_004[case3]" time="3.000" /><testcase classname="test_case.test_baidu.TestBaidu" name="test_baidu_006[1-Selenium]" time="2.836" /><testcase classname="test_case.test_baidu.TestBaidu" name="test_baidu_006[2-playwright]" time="3.913" /><testcase classname="test_case.test_inventory.TestInventory" name="test_grounding_onleysale" time="20.368"><error message="failed on setup with &quot;playwright._impl._api_types.Error: net::ERR_ABORTED; maybe frame was detached?&#10;=========================== logs ===========================&#10;navigating to &quot;https://testwww.youpin898.com/&quot;, waiting until &quot;load&quot;&#10;============================================================&quot;">base_url = 'https://testwww.youpin898.com/'
+
+    @pytest.fixture(scope="class")
+    def page(base_url):
+        with sync_playwright() as play:
+            browser = play.chromium.launch(headless=False)
+            permissions = ["clipboard-read", "clipboard-write"]
+            context = browser.new_context(permissions=permissions)
+            # 录制日志
+            context.tracing.start(screenshots=True, snapshots=True, sources=True)
+            page = context.new_page()
+&gt;           page.goto(base_url)
+
+conftest.py:123: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+venv/lib/python3.10/site-packages/playwright/sync_api/_generated.py:9210: in goto
+    self._sync(
+venv/lib/python3.10/site-packages/playwright/_impl/_page.py:494: in goto
+    return await self._main_frame.goto(**locals_to_params(locals()))
+venv/lib/python3.10/site-packages/playwright/_impl/_frame.py:147: in goto
+    await self._channel.send("goto", locals_to_params(locals()))
+venv/lib/python3.10/site-packages/playwright/_impl/_connection.py:44: in send
+    return await self._connection.wrap_api_call(
+venv/lib/python3.10/site-packages/playwright/_impl/_connection.py:419: in wrap_api_call
+    return await cb()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;playwright._impl._connection.Channel object at 0x10f491930&gt;
+method = 'goto', params = {'url': 'https://testwww.youpin898.com/'}
+return_as_dict = False
+
+    async def inner_send(
+        self, method: str, params: Optional[Dict], return_as_dict: bool
+    ) -&gt; Any:
+        if params is None:
+            params = {}
+        callback = self._connection._send_message_to_server(self._guid, method, params)
+        if self._connection._error:
+            error = self._connection._error
+            self._connection._error = None
+            raise error
+        done, _ = await asyncio.wait(
+            {
+                self._connection._transport.on_error_future,
+                callback.future,
+            },
+            return_when=asyncio.FIRST_COMPLETED,
+        )
+        if not callback.future.done():
+            callback.future.cancel()
+&gt;       result = next(iter(done)).result()
+E       playwright._impl._api_types.Error: net::ERR_ABORTED; maybe frame was detached?
+E       =========================== logs ===========================
+E       navigating to "https://testwww.youpin898.com/", waiting until "load"
+E       ============================================================
+
+venv/lib/python3.10/site-packages/playwright/_impl/_connection.py:79: Error</error></testcase><testcase classname="test_case.test_inventory.TestInventory" name="test_grounding" time="0.001"><error message="failed on setup with &quot;playwright._impl._api_types.Error: net::ERR_ABORTED; maybe frame was detached?&#10;=========================== logs ===========================&#10;navigating to &quot;https://testwww.youpin898.com/&quot;, waiting until &quot;load&quot;&#10;============================================================&quot;">base_url = 'https://testwww.youpin898.com/'
+
+    @pytest.fixture(scope="class")
+    def page(base_url):
+        with sync_playwright() as play:
+            browser = play.chromium.launch(headless=False)
+            permissions = ["clipboard-read", "clipboard-write"]
+            context = browser.new_context(permissions=permissions)
+            # 录制日志
+            context.tracing.start(screenshots=True, snapshots=True, sources=True)
+            page = context.new_page()
+&gt;           page.goto(base_url)
+
+conftest.py:123: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+venv/lib/python3.10/site-packages/playwright/sync_api/_generated.py:9210: in goto
+    self._sync(
+venv/lib/python3.10/site-packages/playwright/_impl/_page.py:494: in goto
+    return await self._main_frame.goto(**locals_to_params(locals()))
+venv/lib/python3.10/site-packages/playwright/_impl/_frame.py:147: in goto
+    await self._channel.send("goto", locals_to_params(locals()))
+venv/lib/python3.10/site-packages/playwright/_impl/_connection.py:44: in send
+    return await self._connection.wrap_api_call(
+venv/lib/python3.10/site-packages/playwright/_impl/_connection.py:419: in wrap_api_call
+    return await cb()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;playwright._impl._connection.Channel object at 0x10f491930&gt;
+method = 'goto', params = {'url': 'https://testwww.youpin898.com/'}
+return_as_dict = False
+
+    async def inner_send(
+        self, method: str, params: Optional[Dict], return_as_dict: bool
+    ) -&gt; Any:
+        if params is None:
+            params = {}
+        callback = self._connection._send_message_to_server(self._guid, method, params)
+        if self._connection._error:
+            error = self._connection._error
+            self._connection._error = None
+            raise error
+        done, _ = await asyncio.wait(
+            {
+                self._connection._transport.on_error_future,
+                callback.future,
+            },
+            return_when=asyncio.FIRST_COMPLETED,
+        )
+        if not callback.future.done():
+            callback.future.cancel()
+&gt;       result = next(iter(done)).result()
+E       playwright._impl._api_types.Error: net::ERR_ABORTED; maybe frame was detached?
+E       =========================== logs ===========================
+E       navigating to "https://testwww.youpin898.com/", waiting until "load"
+E       ============================================================
+
+venv/lib/python3.10/site-packages/playwright/_impl/_connection.py:79: Error</error></testcase><testcase classname="test_case.test_login.TestLogin" name="test_login_001[15557993305-888888]" time="5.007" /></testsuite></testsuites>

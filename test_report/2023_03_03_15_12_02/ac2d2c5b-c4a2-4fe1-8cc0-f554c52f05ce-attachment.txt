@@ -1,0 +1,1 @@
+DEBUG    asyncio:selector_events.py:54 Using selector: KqueueSelector

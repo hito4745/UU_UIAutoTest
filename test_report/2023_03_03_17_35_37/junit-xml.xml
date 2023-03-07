@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="5" failures="0" skipped="0" tests="5" time="4.301" timestamp="2023-03-03T17:35:38.166474" hostname="111deMacBook-Pro.local"><testcase classname="test_case.test_baidu.TestBaidu" name="test_baidu_001" time="3.780"><error message="failed on setup with &quot;AttributeError: 'function' object has no attribute 'locator'&quot;">base_url = 'https://testwww.youpin898.com/'
+
+    @pytest.fixture(scope="class")
+    def page(base_url):
+        with sync_playwright() as play:
+            browser = play.chromium.launch(headless=False)
+            permissions = ["clipboard-read", "clipboard-write"]
+            context = browser.new_context(permissions=permissions)
+            # 录制日志
+            context.tracing.start(screenshots=True, snapshots=True, sources=True)
+            page = context.new_page()
+            page.goto(base_url)
+            page.locator(LoginPage.login_but).click()
+            page.locator(LoginPage.phone_num).fill("15557993309")
+            page.locator(LoginPage.send_sms_but).click()
+            page.locator(LoginPage.input_sms).fill("888888")
+            # 有时登录频繁需要滑动验证码
+    
+&gt;           dropbutton = login_page.locator(LoginPage.veriy)
+E           AttributeError: 'function' object has no attribute 'locator'
+
+conftest.py:130: AttributeError</error></testcase><testcase classname="test_case.test_baidu.TestBaidu" name="test_baidu_002" time="0.000"><error message="failed on setup with &quot;AttributeError: 'function' object has no attribute 'locator'&quot;">base_url = 'https://testwww.youpin898.com/'
+
+    @pytest.fixture(scope="class")
+    def page(base_url):
+        with sync_playwright() as play:
+            browser = play.chromium.launch(headless=False)
+            permissions = ["clipboard-read", "clipboard-write"]
+            context = browser.new_context(permissions=permissions)
+            # 录制日志
+            context.tracing.start(screenshots=True, snapshots=True, sources=True)
+            page = context.new_page()
+            page.goto(base_url)
+            page.locator(LoginPage.login_but).click()
+            page.locator(LoginPage.phone_num).fill("15557993309")
+            page.locator(LoginPage.send_sms_but).click()
+            page.locator(LoginPage.input_sms).fill("888888")
+            # 有时登录频繁需要滑动验证码
+    
+&gt;           dropbutton = login_page.locator(LoginPage.veriy)
+E           AttributeError: 'function' object has no attribute 'locator'
+
+conftest.py:130: AttributeError</error></testcase><testcase classname="test_case.test_baidu.TestBaidu" name="test_baidu_003" time="0.000"><error message="failed on setup with &quot;AttributeError: 'function' object has no attribute 'locator'&quot;">base_url = 'https://testwww.youpin898.com/'
+
+    @pytest.fixture(scope="class")
+    def page(base_url):
+        with sync_playwright() as play:
+            browser = play.chromium.launch(headless=False)
+            permissions = ["clipboard-read", "clipboard-write"]
+            context = browser.new_context(permissions=permissions)
+            # 录制日志
+            context.tracing.start(screenshots=True, snapshots=True, sources=True)
+            page = context.new_page()
+            page.goto(base_url)
+            page.locator(LoginPage.login_but).click()
+            page.locator(LoginPage.phone_num).fill("15557993309")
+            page.locator(LoginPage.send_sms_but).click()
+            page.locator(LoginPage.input_sms).fill("888888")
+            # 有时登录频繁需要滑动验证码
+    
+&gt;           dropbutton = login_page.locator(LoginPage.veriy)
+E           AttributeError: 'function' object has no attribute 'locator'
+
+conftest.py:130: AttributeError</error></testcase><testcase classname="test_case.test_baidu.TestBaidu" name="test_baidu_004[case1]" time="0.000"><error message="failed on setup with &quot;AttributeError: 'function' object has no attribute 'locator'&quot;">base_url = 'https://testwww.youpin898.com/'
+
+    @pytest.fixture(scope="class")
+    def page(base_url):
+        with sync_playwright() as play:
+            browser = play.chromium.launch(headless=False)
+            permissions = ["clipboard-read", "clipboard-write"]
+            context = browser.new_context(permissions=permissions)
+            # 录制日志
+            context.tracing.start(screenshots=True, snapshots=True, sources=True)
+            page = context.new_page()
+            page.goto(base_url)
+            page.locator(LoginPage.login_but).click()
+            page.locator(LoginPage.phone_num).fill("15557993309")
+            page.locator(LoginPage.send_sms_but).click()
+            page.locator(LoginPage.input_sms).fill("888888")
+            # 有时登录频繁需要滑动验证码
+    
+&gt;           dropbutton = login_page.locator(LoginPage.veriy)
+E           AttributeError: 'function' object has no attribute 'locator'
+
+conftest.py:130: AttributeError</error></testcase><testcase classname="test_case.test_baidu.TestBaidu" name="test_baidu_004[case2]" time="0.000"><error message="failed on setup with &quot;AttributeError: 'function' object has no attribute 'locator'&quot;">base_url = 'https://testwww.youpin898.com/'
+
+    @pytest.fixture(scope="class")
+    def page(base_url):
+        with sync_playwright() as play:
+            browser = play.chromium.launch(headless=False)
+            permissions = ["clipboard-read", "clipboard-write"]
+            context = browser.new_context(permissions=permissions)
+            # 录制日志
+            context.tracing.start(screenshots=True, snapshots=True, sources=True)
+            page = context.new_page()
+            page.goto(base_url)
+            page.locator(LoginPage.login_but).click()
+            page.locator(LoginPage.phone_num).fill("15557993309")
+            page.locator(LoginPage.send_sms_but).click()
+            page.locator(LoginPage.input_sms).fill("888888")
+            # 有时登录频繁需要滑动验证码
+    
+&gt;           dropbutton = login_page.locator(LoginPage.veriy)
+E           AttributeError: 'function' object has no attribute 'locator'
+
+conftest.py:130: AttributeError</error></testcase></testsuite></testsuites>

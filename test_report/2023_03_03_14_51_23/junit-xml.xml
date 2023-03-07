@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="1" failures="0" skipped="0" tests="9" time="35.243" timestamp="2023-03-03T14:51:23.656885" hostname="111deMacBook-Pro.local"><testcase classname="test_case.test_baidu.TestBaidu" name="test_baidu_001" time="8.239" /><testcase classname="test_case.test_baidu.TestBaidu" name="test_baidu_002" time="2.892" /><testcase classname="test_case.test_baidu.TestBaidu" name="test_baidu_003" time="0.508" /><testcase classname="test_case.test_baidu.TestBaidu" name="test_baidu_004[case1]" time="2.555" /><testcase classname="test_case.test_baidu.TestBaidu" name="test_baidu_004[case2]" time="2.585" /><testcase classname="test_case.test_baidu.TestBaidu" name="test_baidu_004[case3]" time="2.825" /><testcase classname="test_case.test_baidu.TestBaidu" name="test_baidu_006[1-Selenium]" time="2.568" /><testcase classname="test_case.test_baidu.TestBaidu" name="test_baidu_006[2-playwright]" time="4.122" /><testcase classname="pytest" name="internal" time="0.000"><error message="internal error">Traceback (most recent call last):
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/_pytest/main.py", line 270, in wrap_session
+    session.exitstatus = doit(config, session) or 0
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/_pytest/main.py", line 324, in _main
+    config.hook.pytest_runtestloop(session=session)
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/pluggy/_hooks.py", line 265, in __call__
+    return self._hookexec(self.name, self.get_hookimpls(), kwargs, firstresult)
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/pluggy/_manager.py", line 80, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/pluggy/_callers.py", line 60, in _multicall
+    return outcome.get_result()
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/pluggy/_result.py", line 60, in get_result
+    raise ex[1].with_traceback(ex[2])
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/pluggy/_callers.py", line 39, in _multicall
+    res = hook_impl.function(*args)
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/_pytest/main.py", line 349, in pytest_runtestloop
+    item.config.hook.pytest_runtest_protocol(item=item, nextitem=nextitem)
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/pluggy/_hooks.py", line 265, in __call__
+    return self._hookexec(self.name, self.get_hookimpls(), kwargs, firstresult)
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/pluggy/_manager.py", line 80, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/pluggy/_callers.py", line 60, in _multicall
+    return outcome.get_result()
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/pluggy/_result.py", line 60, in get_result
+    raise ex[1].with_traceback(ex[2])
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/pluggy/_callers.py", line 39, in _multicall
+    res = hook_impl.function(*args)
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/pytest_rerunfailures.py", line 578, in pytest_runtest_protocol
+    reports = runtestprotocol(item, nextitem=nextitem, log=False)
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/_pytest/runner.py", line 131, in runtestprotocol
+    reports.append(call_and_report(item, "call", log))
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/_pytest/runner.py", line 222, in call_and_report
+    report: TestReport = hook.pytest_runtest_makereport(item=item, call=call)
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/pluggy/_hooks.py", line 265, in __call__
+    return self._hookexec(self.name, self.get_hookimpls(), kwargs, firstresult)
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/pluggy/_manager.py", line 80, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/pluggy/_callers.py", line 55, in _multicall
+    gen.send(outcome)
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/allure_pytest/listener.py", line 173, in pytest_runtest_makereport
+    report = (yield).get_result()
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/pluggy/_result.py", line 60, in get_result
+    raise ex[1].with_traceback(ex[2])
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/pluggy/_callers.py", line 34, in _multicall
+    next(gen)  # first yield
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/conftest.py", line 37, in pytest_runtest_makereport
+    page.screenshot(type='png'),
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/playwright/sync_api/_generated.py", line 9931, in screenshot
+    self._sync(
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/playwright/_impl/_sync_base.py", line 104, in _sync
+    return task.result()
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/playwright/_impl/_page.py", line 667, in screenshot
+    encoded_binary = await self._channel.send("screenshot", params)
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/playwright/_impl/_connection.py", line 44, in send
+    return await self._connection.wrap_api_call(
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/playwright/_impl/_connection.py", line 419, in wrap_api_call
+    return await cb()
+  File "/Users/mac/Downloads/playwright-pytest-demo-master/venv/lib/python3.10/site-packages/playwright/_impl/_connection.py", line 79, in inner_send
+    result = next(iter(done)).result()
+playwright._impl._api_types.Error: Target page, context or browser has been closed</error></testcase></testsuite></testsuites>
