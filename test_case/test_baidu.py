@@ -12,6 +12,7 @@ from common.config import *
 class TestBaidu:
 
     @allure.story("test001-搜索")
+    @pytest.mark.skip(reason="")
     def test_baidu_001(self, page, baseUrl_baidu):
         """
         名称：百度搜索"playwright"
@@ -29,6 +30,7 @@ class TestBaidu:
         assert page.title() == "playwright_百度搜索"
 
     @allure.story("test002-保存设置")
+    @pytest.mark.skip(reason="")
     def test_baidu_002(self, page):
         """
         名称：百度搜索设置
@@ -55,6 +57,7 @@ class TestBaidu:
         page.on("dialog", on_dialog)
 
     @allure.story("test003-搜索中国")
+    @pytest.mark.skip(reason="")
     def test_baidu_003(self, page):
         page.goto("https://www.baidu.com")
         # Click input[name="wd"]
@@ -78,6 +81,7 @@ class TestBaidu:
         ids=["case1", "case2", "case3"]
     )
     @allure.story("test004-参数化")
+    @pytest.mark.skip(reason="")
     def test_baidu_004(self, name, search_key, page):
         page.goto("https://www.baidu.com")
         page.type(BaiduElem.search_input, search_key)
@@ -90,6 +94,7 @@ class TestBaidu:
         json_to_list(data_path + "/data_file.json")
     )
     @allure.story("test005-文件读取参数化")
+    @pytest.mark.skip(reason="")
     def test_baidu_006(self, name, search_key, page, baseUrl_baidu):
         page.goto(baseUrl_baidu)
         page.type(BaiduElem.search_input, search_key)

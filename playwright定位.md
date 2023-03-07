@@ -8,7 +8,7 @@ playwright推荐使用定位器也就是locators，定位器是自动等待与�
 page.get_by_role()通过显式和隐式可访问性属性定位。
 
 page.get_by_text()按文本内容定位。
-
+B
 page.get_by_label()通过关联标签的文本查找表单控件。
 
 page.get_by_placeholder()按占位符查找输入。
@@ -28,8 +28,8 @@ page2.get_by_placeholder("唱片名、表演者、条码、ISRC").click()
 page2.get_by_text("或者，亲自来帮豆瓣添加：").click()
 playwright-python使用 evaluate() 方法来执行JavaScript脚本，和selenium类似，也有两种方法实现元素操作。
 
-    page.evaluate()：直接执行完整的JavaScript脚本。
-    locator.evaluate()：定位到元素后再使用JavaScript执行操作。
+page.evaluate()：直接执行完整的JavaScript脚本。
+locator.evaluate()：定位到元素后再使用JavaScript执行操作。
 JS操作 ：page.evaluate('document.getElementsByClassName("ant-btn ant-btn-primary")[5].click()')
 
 元素操作
@@ -49,3 +49,11 @@ JS操作 ：page.evaluate('document.getElementsByClassName("ant-btn ant-btn-prim
 
 截屏、录屏：screenshot、recordVideo
 
+脚本录制：
+-o 代表输出的代码文件的名称；--target 代表使用的语言，默认是 python，即会生成同步模式的操作代码，
+如果传入 python-async 就会生成异步模式的代码；-b 代表的是使用的浏览器，默认是 Chromium，
+其他还有很多设置，比如 --device 可以模拟使用手机浏览器，比如 iPhone 11，--lang 代表设置浏览器的语言，
+--timeout 可以设置页面加载超时时间。
+playwright codegen -o script.py -b firefox
+ 
+python -m playwright codegen -o script.py -b firefox

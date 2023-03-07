@@ -105,6 +105,7 @@ def page(base_url):
         # 有时登录频繁需要滑动验证码
 
         dropbutton = page.locator(LoginPage.veriy)
+        print(dropbutton.all())
         if page.is_visible(LoginPage.veriy):
             # 获取拖动按钮位置并拖动
             box = dropbutton.bounding_box()
@@ -118,6 +119,7 @@ def page(base_url):
             page.mouse.move(mov_x, box['y'] + box['height'] / 2)
 
             page.mouse.up()
+            print(dropbutton.all())
         else:
             pass
         page.locator(LoginPage.commit_but).click()

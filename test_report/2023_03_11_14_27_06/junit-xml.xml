@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="1" failures="0" skipped="0" tests="1" time="1.266" timestamp="2023-03-11T14:27:06.768988" hostname="111deMacBook-Pro.local"><testcase classname="" name="test_case.test_co" time="0.000"><error message="collection failure">test_case/test_co.py:22: in &lt;module&gt;
+    run(playwright)
+test_case/test_co.py:10: in run
+    context = browser.new_context(storage_state="state.json")
+venv/lib/python3.10/site-packages/playwright/sync_api/_generated.py:13946: in new_context
+    self._sync(
+venv/lib/python3.10/site-packages/playwright/_impl/_browser.py:124: in new_context
+    await prepare_browser_context_params(params)
+venv/lib/python3.10/site-packages/playwright/_impl/_browser.py:242: in prepare_browser_context_params
+    (await async_readfile(storageState)).decode()
+venv/lib/python3.10/site-packages/playwright/_impl/_helper.py:352: in async_readfile
+    return await loop.run_in_executor(None, inner)
+/usr/local/Cellar/python@3.10/3.10.6_1/Frameworks/Python.framework/Versions/3.10/lib/python3.10/concurrent/futures/thread.py:58: in run
+    result = self.fn(*self.args, **self.kwargs)
+venv/lib/python3.10/site-packages/playwright/_impl/_helper.py:348: in inner
+    with open(file, "rb") as fh:
+E   FileNotFoundError: [Errno 2] No such file or directory: 'state.json'</error></testcase></testsuite></testsuites>
