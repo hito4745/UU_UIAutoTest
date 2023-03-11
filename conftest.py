@@ -130,6 +130,44 @@ def page(base_url):
         browser.close()
 
 
+@pytest.fixture(scope="class")
+def logged_page(base_url):
+    ss_file = '/Users/mac/Downloads/playwright-demo/auth/state.json'
+    with sync_playwright() as play:
+        browser = play.chromium.launch(headless=False)
+        permissions = ["clipboard-read", "clipboard-write"]
+        # 判断是否存在状态文件，有的话就加载
+        if os.path.isfile(ss_file):
+            context = browser.new_context(storage_state=ss_file, permissions=permissions)
+            # print("登录文件存在，使用已登录状态")
+        else:
+            context = browser.new_context()
+            # print("登录文件不存在，重新登录登录状态")
+        logged_page = context.new_page()
+        # 录制日志
+        context.tracing.start(screenshots=True, snapshots=True, sources=True)
+        # 直接跳转至登录后页面，前提是未登录用户访问待测系统会自动跳转至登录页面
+        logged_page.goto("https://testwww.youpin898.com/stock?gameId=730&tabKey=1")
+
+        # 判断是否成功进入系统，如果没有需要进行登录，一般在第一次访问系统，或登录信息过期等原因会触发
+        if logged_page.is_visible(LoginPage.my_sale):
+            print("已登录，直接开始用例执行")
+        else:
+            print("未登录，执行登录")
+            logged_page.locator(LoginPage.login_but).click()
+            logged_page.locator(LoginPage.phone_num).fill("15557993309")
+            logged_page.locator(LoginPage.send_sms_but).click()
+            logged_page.locator(LoginPage.input_sms).fill("888888")
+            logged_page.locator(LoginPage.commit_but).click()
+        yield logged_page
+
+    # 测试执行结束后保存状态文件，前提是测试用例中不能退出系统，安全起见加上异常处理
+    try:
+        context.storage_state(path=ss_file)
+    except Exception as e:
+        print(e)
+
+
 def description_html(desc):
     """
     将用例中的描述转成HTML对象

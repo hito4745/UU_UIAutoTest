@@ -17,7 +17,7 @@ class TestLogin:
         json_to_list(data_path + "/login_data.json")
     )
     @allure.story("test001-登录-成功")
-    def test_login_001(self, login_page,phone,code, base_url):
+    def test_login_001(self, login_page, phone, code, base_url):
         # 跳转有品首页
         login_page.goto(base_url)
         # 点击登录按钮
